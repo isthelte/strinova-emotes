@@ -38,12 +38,12 @@ async def upload_images(channel):
     
     # Path to the emotes folder
     # emotes_folder_name = 'EmotesWiki'
-    emotes_folder_name = 'ChatEmote'
+    emotes_folder_name = 'PopTeamEpic'
     emotes_dir = os.path.join(script_dir, emotes_folder_name)
 
     # Path to the log file
     # log_file_path = os.path.join(script_dir, 'emote_urls.txt')
-    log_file_path = os.path.join(script_dir, 'chat_emote_urls.txt')
+    log_file_path = os.path.join(script_dir, 'pop_team_epic_emote_urls.txt')
 
     image_files = []
     for file in os.listdir(emotes_folder_name):
