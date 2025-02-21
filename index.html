@@ -22,6 +22,22 @@
     .image:hover {
       filter: brightness(0.7);
     }
+    .preview-container{
+      position: relative;
+      width: 256px;
+      height: 256px;
+      display: inline-block;
+    }
+    .preview-toast{
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: white;
+      color: white;
+      padding: 16px;
+      border-radius: 4px;
+      z-index: 1000;
+    }
     .star-icon {
       position: absolute;
       top: 5px;
@@ -51,6 +67,12 @@
       <button onclick="toggleLabel()" class="ml-2 text-sm font-medium text-gray-900" id="copyModeLabel">URL Mode</button>
   </div>
 
+    <!-- Preview -->
+    <div id="preview-toast" class="preview-toast">
+      <div class="preview-container" class="flex flex-wrap">
+        <img id="image-preview"/>
+      </div>
+    </div>
     <!-- Favorites Section -->
     <div class="section">
       <h1 class="text-xl font-semibold mb-3">Favorites</h1>
@@ -311,6 +333,7 @@
     const favoritesContainer = document.getElementById('favorites-container');
     const recentContainer = document.getElementById('recent-container');
     const toast = document.getElementById('toast');
+    const reviewToast = document.getElementById('preview-toast');
 
     // Load favorites from localStorage
     function loadFavorites() {
@@ -372,6 +395,12 @@
       setTimeout(() => {
         toast.style.display = 'none';
       }, 2000);
+    }
+
+    // Function to show preview toast
+    function showReviewToast(){
+      reviewToast.style.display = 'block';
+      setTimeout(() => {}, 0)
     }
 
     // Function to copy to clipboard
@@ -530,6 +559,11 @@
       img.addEventListener('click', function(el) {
         copyToClipboard(url,el.target);
         addToRecent(url);
+      });
+      img.addEventListener('mouseover', function(e) {
+        const preview = document.getElementById("image-preview");
+        preview.src = url;
+        console.log("in hover " + url)
       });
       
       const starIcon = document.createElement('div');
