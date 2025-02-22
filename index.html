@@ -12,16 +12,24 @@
       height: 100px;
       display: inline-block;
     }
+
     .image {
       width: 100%;
       height: 100%;
       object-fit: contain;
       cursor: pointer;
-      transition: filter 0.3s;
     }
-    .image:hover {
-      filter: brightness(0.7);
+
+    #fullImg {
+      position: absolute;
+      z-index: 100;
+      width: auto; /* grow to natural width */
+      height: auto; /* grow to natural height */
+      max-width: none; /* remove any maximum size restrictions */
+      max-height: none;
+      pointer-events: none; /* pass hover event to the imgs below */
     }
+
     .star-icon {
       position: absolute;
       top: 5px;
@@ -71,6 +79,8 @@
 
     <!-- Toast Notification -->
     <div id="toast" class="toast">Image copied to clipboard!</div>
+
+    <img id="fullImg" />
 
   <script>
     // Image URLs
@@ -515,6 +525,21 @@
       img.addEventListener('click', function(el) {
         copyToClipboard(url,el.target);
         addToRecent(url);
+      });
+
+      const fullSizeImg = document.getElementById('fullImg');
+
+      img.addEventListener('mouseenter', function() {
+        fullSizeImg.style.display = 'block';
+        fullSizeImg.src = url;
+
+        const rect = img.getBoundingClientRect();
+        fullSizeImg.style.top = `${rect.top + window.scrollY - (fullSizeImg.width / 2) + (img.width / 2)}px`;
+        fullSizeImg.style.left = `${rect.left + window.scrollX - (fullSizeImg.height / 2) + (img.height / 2)}px`;
+      });
+
+      img.addEventListener('mouseleave', function() {
+        fullSizeImg.style.display = 'none';
       });
       
       const starIcon = document.createElement('div');
