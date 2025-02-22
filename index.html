@@ -531,8 +531,29 @@
       return container;
     }
 
+    // Function to clean up localStorage
+    function cleanUpLocalStorage() {
+      // Load saved favorites and recent images
+      loadFavorites();
+      loadRecent();
+
+      // Convert imageUrls array to a Set for faster lookup
+      const validImages = new Set(imageUrls);
+
+      // Filter favorites to only keep valid images
+      favorites = new Set([...favorites].filter(url => validImages.has(url)));
+      saveFavorites();
+
+      // Filter recent list to only keep valid images
+      recent = recent.filter(url => validImages.has(url));
+      saveRecent();
+    }
+
     // Initialize the view
     function initializeGallery() {
+      // Clean up localStorage from old data
+      cleanUpLocalStorage();
+
       // Load saved state
       loadFavorites();
       loadRecent();
