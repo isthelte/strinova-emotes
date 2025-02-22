@@ -377,46 +377,29 @@
     }
 
     // Function to copy to clipboard
-    async function copyToClipboard(url,el) {
-    try {
-      if (copyImageMode) {
-        // const img = new Image
+    async function copyToClipboard(url, el) {
+      try {
+        // Get base URL of the current page
+        const baseUrl = window.location.origin + window.location.pathname.replace(/\/[^\/]*$/, '/');
+        // Construct absolute URL
+        const absoluteUrl = new URL(url, baseUrl).href;
         
-        // const c = document.createElement('canvas')
-        // const ctx = c.getContext('2d')
-        // ctx.drawImage(el,0,0)
-        // c.toBlob(async(blob) => {
-        //   const data = [new ClipboardItem({ [blob.type]: blob })];
-        //   await navigator.clipboard.write(data);
-        // },'image/png')
-
-  //       window.getSelection().removeAllRanges();
-  // let range = document.createRange();
-  // range.selectNode(el);
-  // window.getSelection().addRange(range);
-  // document.execCommand('copy');
-  // window.getSelection().removeAllRanges();
-
-        // Copy the image itself
-        const img = await fetch(url, {
-          headers: {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:135.0) Gecko/20100101 Firefox/135.0',
-              'Host': 'cdn.discordapp.com',
-              'Origin': 'cdn.discordapp.com'
-        }});
-        const blob = await img.blob();
-        const data = [new ClipboardItem({ [blob.type]: blob })];
-        await navigator.clipboard.write(data);
-      } else {
-        // Copy the URL (original behavior)
-        await navigator.clipboard.writeText(url);
+        if (copyImageMode) {
+          // Copy the image itself
+          const img = await fetch(absoluteUrl);
+          const blob = await img.blob();
+          const data = [new ClipboardItem({ [blob.type]: blob })];
+          await navigator.clipboard.write(data);
+        } else {
+          // Copy the absolute URL
+          await navigator.clipboard.writeText(absoluteUrl);
+        }
+        showToast();
+      } catch (err) {
+        console.error('Failed to copy: ', err);
+        alert('Failed to copy: ' + err.message);
       }
-      showToast();
-    } catch (err) {
-      console.error('Failed to copy: ', err);
-      alert('Failed to copy: ' + err.message);
     }
-  }
 
   // Function to update toggle label
   function updateToggleLabel() {
