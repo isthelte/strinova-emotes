@@ -55,8 +55,13 @@
 </head>
 <body class="bg-gray-100 p-8">
   <div class="mb-4 flex items-center">
-    <span class="mr-2 font-medium">Copy mode:</span>
+      <span class="mr-2 font-medium">Copy mode:</span>
       <button onclick="toggleLabel()" class="ml-2 text-sm font-medium text-gray-900" id="copyModeLabel">URL Mode</button>
+
+      <span class="mx-4">|</span>
+      
+      <span class="mr-2 font-medium">View mode:</span>
+      <button onclick="toggleView()" class="ml-2 text-sm font-medium text-gray-900" id="viewModeLabel">Flat</button>
   </div>
 
     <!-- Favorites Section -->
@@ -89,6 +94,7 @@
     let recent = [];
     // Add this variable to track the copy mode
     let copyImageMode = false;
+    let categorizedView = false;
 
     // DOM elements
     const allContainer = document.getElementById('all-container');
@@ -115,6 +121,22 @@
       }
       
       return paths;
+    }
+
+    function saveCategorizedView() {
+      localStorage.setItem('categorizedView', JSON.stringify(categorizedView));
+    }
+
+    function loadCategorizedView() {
+      const mode = localStorage.getItem('categorizedView');
+      if (mode !== null) {
+        try {
+          categorizedView = JSON.parse(mode);
+        } catch (e) {
+          console.error('Error loading view mode:', e);
+          categorizedView = false;
+        }
+      }
     }
 
     // Load favorites from localStorage
@@ -213,6 +235,12 @@
     toast.textContent = copyImageMode ? 'Image copied to clipboard!' : 'URL copied to clipboard!';
   }
 
+  // Function to update view toggle label
+  function updateViewToggleLabel() {
+    const label = document.getElementById('viewModeLabel');
+    label.textContent = categorizedView ? 'Categorized' : 'Flat';
+  }
+
   // Add this to your initialization code
   document.addEventListener('DOMContentLoaded', function() {
     initializeGallery();
@@ -224,6 +252,14 @@
       copyImageMode = !copyImageMode
       updateToggleLabel();
       saveCopyImageMode();
+  }
+
+  // Function to toggle view mode
+  function toggleView() {
+    categorizedView = !categorizedView;
+    updateViewToggleLabel();
+    saveCategorizedView();
+    updateAllImagesView();
   }
 
     // Function to add to recent
@@ -301,60 +337,81 @@
     function updateAllImagesView() {
       allContainer.innerHTML = '';
       
-      // Create sections for each folder
-      ['EmotesWiki', 'ChatEmote', 'PopTeamEpic'].forEach(folder => {
-        if (emoteData[folder]) {
-          const folderSection = document.createElement('div');
-          folderSection.className = 'mb-8';
-          
-          // Add folder header
-          const folderHeader = document.createElement('h2');
-          folderHeader.className = 'text-lg font-medium mb-4';
-          folderHeader.textContent = folder;
-          folderSection.appendChild(folderHeader);
-          
-          if (folder === 'PopTeamEpic') {
-            // For PopTeamEpic, just list all emotes
-            const emoteContainer = document.createElement('div');
-            emoteContainer.className = 'flex flex-wrap';
+      if (categorizedView) {
+        // Categorized view - organized by folder and character
+        ['EmotesWiki', 'ChatEmote', 'PopTeamEpic'].forEach(folder => {
+          if (emoteData[folder]) {
+            const folderSection = document.createElement('div');
+            folderSection.className = 'mb-8';
             
-            emoteData[folder].forEach(emote => {
-              const container = createImageElement(emote.path);
-              emoteContainer.appendChild(container);
-            });
+            const folderHeader = document.createElement('h2');
+            folderHeader.className = 'text-lg font-medium mb-4';
+            folderHeader.textContent = folder;
+            folderSection.appendChild(folderHeader);
             
-            folderSection.appendChild(emoteContainer);
-          } else {
-            // For EmotesWiki and ChatEmote, create subsections by character
-            Object.entries(emoteData[folder]).forEach(([character, emotes]) => {
-              const characterSection = document.createElement('div');
-              characterSection.className = 'mb-4';
+            if (folder === 'PopTeamEpic') {
+              const emoteContainer = document.createElement('div');
+              emoteContainer.className = 'flex flex-wrap';
               
-              // Add character header
-              const characterHeader = document.createElement('h3');
-              characterHeader.className = 'text-md font-medium mb-2 ml-4';
-              characterHeader.textContent = character;
-              characterSection.appendChild(characterHeader);
-              
-              // Add emotes container
-              const emotesContainer = document.createElement('div');
-              emotesContainer.className = 'flex flex-wrap ml-8';
-              
-              emotes.forEach(emote => {
+              emoteData[folder].forEach(emote => {
                 const container = createImageElement(emote.path);
-                emotesContainer.appendChild(container);
+                emoteContainer.appendChild(container);
               });
               
-              characterSection.appendChild(emotesContainer);
-              folderSection.appendChild(characterSection);
+              folderSection.appendChild(emoteContainer);
+            } else {
+              Object.entries(emoteData[folder]).forEach(([character, emotes]) => {
+                const characterSection = document.createElement('div');
+                characterSection.className = 'mb-4';
+                
+                const characterHeader = document.createElement('h3');
+                characterHeader.className = 'text-md font-medium mb-2 ml-4';
+                characterHeader.textContent = character;
+                characterSection.appendChild(characterHeader);
+                
+                const emotesContainer = document.createElement('div');
+                emotesContainer.className = 'flex flex-wrap ml-8';
+                
+                emotes.forEach(emote => {
+                  const container = createImageElement(emote.path);
+                  emotesContainer.appendChild(container);
+                });
+                
+                characterSection.appendChild(emotesContainer);
+                folderSection.appendChild(characterSection);
+              });
+            }
+            
+            allContainer.appendChild(folderSection);
+          }
+        });
+      } else {
+        // Flat view - all emotes in a single grid
+        const container = document.createElement('div');
+        container.className = 'flex flex-wrap';
+        
+        // Get all emotes in a flat array
+        const allEmotes = [];
+        ['EmotesWiki', 'ChatEmote'].forEach(folder => {
+          if (emoteData[folder]) {
+            Object.values(emoteData[folder]).forEach(characterEmotes => {
+              characterEmotes.forEach(emote => allEmotes.push(emote.path));
             });
           }
-          
-          allContainer.appendChild(folderSection);
+        });
+        if (emoteData.PopTeamEpic) {
+          emoteData.PopTeamEpic.forEach(emote => allEmotes.push(emote.path));
         }
-      });
+        
+        // Create elements for all emotes
+        allEmotes.forEach(path => {
+          const imageContainer = createImageElement(path);
+          container.appendChild(imageContainer);
+        });
+        
+        allContainer.appendChild(container);
+      }
     }
-
       // Function to create an image element with its container and star
       function createImageElement(url) {
         const container = document.createElement('div');
@@ -422,6 +479,8 @@
         loadRecent();
         loadCopyImageMode();
         saveCopyImageMode();
+        loadCategorizedView();
+        updateViewToggleLabel();
         
         // Initialize views
         updateAllImagesView();
