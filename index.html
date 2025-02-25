@@ -219,6 +219,9 @@
           // Copy the absolute URL
           await navigator.clipboard.writeText(absoluteUrl);
         }
+    
+        // Update toast message text
+        toast.textContent = copyImageMode ? 'Image copied to clipboard!' : 'URL copied to clipboard!';
         showToast();
       } catch (err) {
         console.error('Failed to copy: ', err);
@@ -230,9 +233,6 @@
   function updateToggleLabel() {
     const label = document.getElementById('copyModeLabel');
     label.textContent = copyImageMode ? 'Image' : 'URL';
-    
-    // Update toast message text
-    toast.textContent = copyImageMode ? 'Image copied to clipboard!' : 'URL copied to clipboard!';
   }
 
   // Function to update view toggle label
@@ -291,8 +291,9 @@
         return;
       }
       
-      recent.forEach(url => {
-        const container = createImageElement(url);
+      recent.forEach(path => {
+        const emote = findEmoteByPath(path);
+        const container = createImageElement(emote);
         recentContainer.appendChild(container);
       });
     }
@@ -326,8 +327,9 @@
         return;
       }
       
-      Array.from(favorites).forEach(url => {
-        const container = createImageElement(url);
+      Array.from(favorites).forEach(path => {
+        const emote = findEmoteByPath(path);
+        const container = createImageElement(emote);
         favoritesContainer.appendChild(container);
       });
     }
@@ -354,7 +356,7 @@
               emoteContainer.className = 'flex flex-wrap';
               
               emoteData[folder].forEach(emote => {
-                const container = createImageElement(emote.path);
+                const container = createImageElement(emote); // Pass the emote object
                 emoteContainer.appendChild(container);
               });
               
@@ -373,7 +375,7 @@
                 emotesContainer.className = 'flex flex-wrap ml-8';
                 
                 emotes.forEach(emote => {
-                  const container = createImageElement(emote.path);
+                  const container = createImageElement(emote); // Pass the emote object
                   emotesContainer.appendChild(container);
                 });
                 
@@ -395,25 +397,53 @@
         ['EmotesWiki', 'ChatEmote'].forEach(folder => {
           if (emoteData[folder]) {
             Object.values(emoteData[folder]).forEach(characterEmotes => {
-              characterEmotes.forEach(emote => allEmotes.push(emote.path));
+              allEmotes.push(...characterEmotes); // Push the entire emote objects
             });
           }
         });
         if (emoteData.PopTeamEpic) {
-          emoteData.PopTeamEpic.forEach(emote => allEmotes.push(emote.path));
+          allEmotes.push(...emoteData.PopTeamEpic);
         }
         
         // Create elements for all emotes
-        allEmotes.forEach(path => {
-          const imageContainer = createImageElement(path);
+        allEmotes.forEach(emote => {
+          const imageContainer = createImageElement(emote); // Pass the emote object
           container.appendChild(imageContainer);
         });
         
         allContainer.appendChild(container);
       }
     }
+
+    // Function to find an emote object by its path
+    function findEmoteByPath(path) {
+      // Check in all folders
+      for (const folder of ['EmotesWiki', 'ChatEmote']) {
+        if (emoteData[folder]) {
+          for (const character in emoteData[folder]) {
+            const found = emoteData[folder][character].find(emote => emote.path === path);
+            if (found) return found;
+          }
+        }
+      }
+      
+      // Check in PopTeamEpic
+      if (emoteData.PopTeamEpic) {
+        const found = emoteData.PopTeamEpic.find(emote => emote.path === path);
+        if (found) return found;
+      }
+      
+      // If not found, return an object with just the path
+      return { path };
+    }
+
       // Function to create an image element with its container and star
-      function createImageElement(url) {
+      function createImageElement(emote) {
+        // Handle both object and string inputs for backward compatibility
+        const url = typeof emote === 'object' ? emote.path : emote;
+        const emoteId = typeof emote === 'object' ? emote.id : null;
+        const emoteType = typeof emote === 'object' && url.includes('ChatEmote/') ? 'ChatEmote' : null;
+        
         const container = document.createElement('div');
         container.className = 'image-container';
         
@@ -422,8 +452,28 @@
         img.src = url;
         img.className = 'image';
         img.addEventListener('click', function(el) {
-          copyToClipboard(url,el.target);
+          copyToClipboard(url, el.target);
           addToRecent(url);
+        });
+        
+        // Add right-click event listener for ChatEmote emotes
+        img.addEventListener('contextmenu', function(e) {
+          // Check if this is a ChatEmote emote
+          if (emoteType === 'ChatEmote' && emoteId) {
+            e.preventDefault(); // Prevent the default context menu
+            
+            const styleTxt = `[style="Image" id="${emoteId}"]`;
+            navigator.clipboard.writeText(styleTxt)
+              .then(() => {
+                // Update toast message and show
+                toast.textContent = 'Style code copied to clipboard!';
+                showToast();
+              })
+              .catch(err => {
+                console.error('Failed to copy style code: ', err);
+                alert('Failed to copy style code: ' + err.message);
+              });
+          }
         });
 
         const fullSizeImg = document.getElementById('fullImg');
