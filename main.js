@@ -1,7 +1,6 @@
 // State tracking with localStorage persistence
 let favorites = new Set();
 let recent = [];
-// Add this variable to track the copy mode
 let copyImageMode = false;
 let categorizedView = false;
 let searchQuery = "";
@@ -278,7 +277,6 @@ function updateFavoritesView() {
 }
 
 // Function to update all images view
-// Update the updateAllImagesView function
 function updateAllImagesView() {
   allContainer.innerHTML = "";
 
