@@ -6,11 +6,20 @@ let categorizedView = false;
 let searchQuery = "";
 
 // DOM elements
+const searchInput = document.getElementById("searchInput");
 const allContainer = document.getElementById("all-container");
 const favoritesContainer = document.getElementById("favorites-container");
 const recentContainer = document.getElementById("recent-container");
 const fullSizeImg = document.getElementById("fullImg");
 const toast = document.getElementById("toast");
+
+// Override Ctrl+F to focus on emote search input
+window.addEventListener("keydown", function (e) {
+  if (e.ctrlKey && e.key === "f") {
+    e.preventDefault();
+    searchInput.focus();
+  }
+});
 
 // Helper function to get all paths (for favorites and recent functionality)
 function getAllPaths() {
@@ -554,7 +563,6 @@ function initializeGallery() {
   loadCategorizedView();
   updateViewToggleLabel();
 
-  const searchInput = document.getElementById("searchInput");
   if (searchInput) {
     searchInput.addEventListener("input", handleSearch);
   }
