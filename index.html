@@ -1,26 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Strinova Emotes Gallery</title>
-  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body class="p-2 pr-4">
-  <div class="top-controls">
-    <div class="control-group">
-      <span class="control-label">Copy mode:</span>
-      <button onclick="toggleLabel()" class="text-sm" id="copyModeLabel">URL Mode</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Strinova Emotes Gallery</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="p-2 pr-4">
+    <div class="top-controls">
+      <div class="control-group">
+        <span class="control-label">Copy mode:</span>
+        <button onclick="toggleLabel()" class="text-sm" id="copyModeLabel">
+          URL Mode
+        </button>
+      </div>
+
+      <div class="divider md:block hidden"></div>
+
+      <div class="control-group">
+        <span class="control-label">View mode:</span>
+        <button onclick="toggleView()" class="text-sm" id="viewModeLabel">
+          Flat
+        </button>
+      </div>
     </div>
-    
-    <div class="divider md:block hidden"></div>
-    
-    <div class="control-group">
-      <span class="control-label">View mode:</span>
-      <button onclick="toggleView()" class="text-sm" id="viewModeLabel">Flat</button>
-    </div>
-  </div>
 
     <!-- Favorites Section -->
     <div class="section">
@@ -47,7 +51,7 @@
 
     <img id="fullImg" />
 
-  <script src="emote-data.js"></script>
-  <script src="script.js"></script>
-</body>
+    <script src="emote-data.js"></script>
+    <script src="script.js"></script>
+  </body>
 </html>
