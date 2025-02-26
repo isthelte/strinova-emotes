@@ -184,11 +184,10 @@ function toggleView() {
 
 // Function to add to recent
 function addToRecent(url) {
-  // Remove if already in the list
-  recent = recent.filter((item) => item !== url);
-
-  // Add to beginning of array
-  recent.unshift(url);
+  // Add to beginning of recent list if it doesn't exist yet
+  if (!recent.includes(url)) {
+    recent.unshift(url);
+  }
 
   // Keep only last 10
   if (recent.length > 10) {
