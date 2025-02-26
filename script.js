@@ -4,6 +4,7 @@ let recent = [];
 // Add this variable to track the copy mode
 let copyImageMode = false;
 let categorizedView = false;
+let searchQuery = "";
 
 // DOM elements
 const allContainer = document.getElementById("all-container");
@@ -110,6 +111,13 @@ function showToast() {
   }, 2000);
 }
 
+function handleSearch(e) {
+  searchQuery = e.target.value.toLowerCase();
+  updateAllImagesView();
+  updateFavoritesView();
+  updateRecentView();
+}
+
 // Function to copy to clipboard
 async function copyToClipboard(url, el) {
   try {
@@ -205,11 +213,21 @@ function updateRecentView() {
     return;
   }
 
+  let hasVisibleRecent = false;
+
   recent.forEach((path) => {
     const emote = findEmoteByPath(path);
-    const container = createImageElement(emote);
-    recentContainer.appendChild(container);
+    if (emoteMatchesSearch(emote)) {
+      const container = createImageElement(emote);
+      recentContainer.appendChild(container);
+      hasVisibleRecent = true;
+    }
   });
+
+  if (!hasVisibleRecent && searchQuery) {
+    recentContainer.innerHTML =
+      '<p class="text-gray-500 italic p-2">No recent emotes matching your search</p>';
+  }
 }
 
 // Function to toggle favorite status
@@ -242,11 +260,21 @@ function updateFavoritesView() {
     return;
   }
 
+  let hasVisibleFavorites = false;
+
   Array.from(favorites).forEach((path) => {
     const emote = findEmoteByPath(path);
-    const container = createImageElement(emote);
-    favoritesContainer.appendChild(container);
+    if (emoteMatchesSearch(emote)) {
+      const container = createImageElement(emote);
+      favoritesContainer.appendChild(container);
+      hasVisibleFavorites = true;
+    }
   });
+
+  if (!hasVisibleFavorites && searchQuery) {
+    favoritesContainer.innerHTML =
+      '<p class="text-gray-500 italic p-2">No favorites matching your search</p>';
+  }
 }
 
 // Function to update all images view
@@ -266,13 +294,19 @@ function updateAllImagesView() {
         folderHeader.textContent = folder;
         folderSection.appendChild(folderHeader);
 
+        let hasVisibleEmotes = false;
+
         if (folder === "PopTeamEpic") {
           const emoteContainer = document.createElement("div");
           emoteContainer.className = "flex flex-wrap";
 
           emoteData[folder].forEach((emote) => {
-            const container = createImageElement(emote); // Pass the emote object
-            emoteContainer.appendChild(container);
+            // Only show if it matches the search
+            if (emoteMatchesSearch(emote)) {
+              const container = createImageElement(emote);
+              emoteContainer.appendChild(container);
+              hasVisibleEmotes = true;
+            }
           });
 
           folderSection.appendChild(emoteContainer);
@@ -289,17 +323,28 @@ function updateAllImagesView() {
             const emotesContainer = document.createElement("div");
             emotesContainer.className = "flex flex-wrap ml-8";
 
+            let characterHasVisibleEmotes = false;
+
             emotes.forEach((emote) => {
-              const container = createImageElement(emote); // Pass the emote object
-              emotesContainer.appendChild(container);
+              // Only show if it matches the search
+              if (emoteMatchesSearch(emote)) {
+                const container = createImageElement(emote);
+                emotesContainer.appendChild(container);
+                characterHasVisibleEmotes = true;
+                hasVisibleEmotes = true;
+              }
             });
 
-            characterSection.appendChild(emotesContainer);
-            folderSection.appendChild(characterSection);
+            if (characterHasVisibleEmotes) {
+              characterSection.appendChild(emotesContainer);
+              folderSection.appendChild(characterSection);
+            }
           });
         }
 
-        allContainer.appendChild(folderSection);
+        if (hasVisibleEmotes) {
+          allContainer.appendChild(folderSection);
+        }
       }
     });
   } else {
@@ -312,7 +357,7 @@ function updateAllImagesView() {
     ["EmotesWiki", "ChatEmote"].forEach((folder) => {
       if (emoteData[folder]) {
         Object.values(emoteData[folder]).forEach((characterEmotes) => {
-          allEmotes.push(...characterEmotes); // Push the entire emote objects
+          allEmotes.push(...characterEmotes);
         });
       }
     });
@@ -320,14 +365,36 @@ function updateAllImagesView() {
       allEmotes.push(...emoteData.PopTeamEpic);
     }
 
-    // Create elements for all emotes
+    let hasVisibleEmotes = false;
+
+    // Create elements for all emotes that match the search
     allEmotes.forEach((emote) => {
-      const imageContainer = createImageElement(emote); // Pass the emote object
-      container.appendChild(imageContainer);
+      if (emoteMatchesSearch(emote)) {
+        const imageContainer = createImageElement(emote);
+        container.appendChild(imageContainer);
+        hasVisibleEmotes = true;
+      }
     });
 
-    allContainer.appendChild(container);
+    if (hasVisibleEmotes) {
+      allContainer.appendChild(container);
+    } else if (searchQuery) {
+      const noResults = document.createElement("p");
+      noResults.className = "text-gray-500 italic p-2";
+      noResults.textContent = "No emotes found matching your search.";
+      allContainer.appendChild(noResults);
+    }
   }
+}
+
+// Function to check if an emote matches the search query
+function emoteMatchesSearch(emote) {
+  if (!searchQuery) return true;
+
+  const path = emote.path.toLowerCase();
+  const id = emote.id ? emote.id.toLowerCase() : "";
+
+  return path.includes(searchQuery) || id.includes(searchQuery);
 }
 
 // Function to find an emote object by its path
@@ -490,6 +557,11 @@ function initializeGallery() {
   saveCopyImageMode();
   loadCategorizedView();
   updateViewToggleLabel();
+
+  const searchInput = document.getElementById("searchInput");
+  if (searchInput) {
+    searchInput.addEventListener("input", handleSearch);
+  }
 
   // Initialize views
   updateAllImagesView();
