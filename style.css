@@ -107,8 +107,8 @@ h1 {
   object-fit: contain;
   pointer-events: none;
   opacity: 0;
-  transform: translateY(8px);
   animation: fadeInUp 0.15s forwards;
+  will-change: transform, opacity;
 }
 
 /* Animations */
