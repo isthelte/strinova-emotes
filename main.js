@@ -9,6 +9,7 @@ let searchQuery = "";
 const allContainer = document.getElementById("all-container");
 const favoritesContainer = document.getElementById("favorites-container");
 const recentContainer = document.getElementById("recent-container");
+const fullSizeImg = document.getElementById("fullImg");
 const toast = document.getElementById("toast");
 
 // Helper function to get all paths (for favorites and recent functionality)
@@ -438,8 +439,8 @@ function createImageElement(emote) {
   // Discord-like click animation
   img.addEventListener("click", function (el) {
     // Add click animation class
-    container.classList.add("emote-clicked");
-    setTimeout(() => container.classList.remove("emote-clicked"), 200);
+    fullSizeImg.classList.add("fullimg-clicked");
+    setTimeout(() => fullSizeImg.classList.remove("fullimg-clicked"), 200);
 
     copyToClipboard(url, el.target);
     addToRecent(url);
@@ -452,8 +453,8 @@ function createImageElement(emote) {
       e.preventDefault(); // Prevent the default context menu
 
       // Add right-click animation
-      container.classList.add("emote-right-clicked");
-      setTimeout(() => container.classList.remove("emote-right-clicked"), 200);
+      fullSizeImg.classList.add("fullimg-clicked");
+      setTimeout(() => fullSizeImg.classList.remove("fullimg-clicked"), 200);
 
       const styleTxt = `[style="Image" id="${emoteId}"]`;
       navigator.clipboard
@@ -470,8 +471,6 @@ function createImageElement(emote) {
         });
     }
   });
-
-  const fullSizeImg = document.getElementById("fullImg");
 
   img.addEventListener("mouseenter", function () {
     fullSizeImg.style.display = "block";

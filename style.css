@@ -57,23 +57,12 @@ h1 {
 
 /* Hover effects */
 .emote-hovered {
-  transform: translateY(-2px) scale(1.05);
+  transform: translateY(-2px) scale(1.1);
   background-color: var(--discord-lightest);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* Click animation */
-.emote-clicked {
-  transform: scale(0.9);
-  transition: transform 0.1s ease;
-}
-
-.emote-right-clicked {
-  transform: scale(0.95);
-  transition: transform 0.1s ease;
-}
-
-/* Enhanced star icon */
 .star-icon {
   position: absolute;
   top: 5px;
@@ -106,16 +95,22 @@ h1 {
   max-height: none;
   object-fit: contain;
   pointer-events: none;
-  opacity: 0;
-  animation: fadeInUp 0.15s forwards;
   will-change: transform, opacity;
 }
 
-/* Animations */
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
+.fullimg-clicked {
+  animation: growShrink 0.2s ease;
+}
+
+@keyframes growShrink {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
   }
 }
 
@@ -133,6 +128,7 @@ h1 {
   font-weight: 500;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   animation: slideIn 0.3s forwards;
+  transition: opacity 0.3s;
 }
 
 @keyframes slideIn {
