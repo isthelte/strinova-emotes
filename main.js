@@ -482,6 +482,8 @@ function createImageElement(emote) {
   });
 
   img.addEventListener("mouseenter", function () {
+    container.style.opacity = "0";
+
     fullSizeImg.style.display = "block";
     fullSizeImg.src = url;
 
@@ -500,6 +502,8 @@ function createImageElement(emote) {
   });
 
   img.addEventListener("mouseleave", function () {
+    container.style.opacity = "1";
+
     fullSizeImg.style.display = "none";
     container.classList.remove("emote-hovered");
   });
