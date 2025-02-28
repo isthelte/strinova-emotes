@@ -3,6 +3,7 @@ let favorites = new Set();
 let recent = [];
 let copyImageMode = false;
 let categorizedView = false;
+let chatEmoteOnly = false;
 let searchQuery = "";
 
 // DOM elements
@@ -18,8 +19,14 @@ window.addEventListener("keydown", function (e) {
   if (e.ctrlKey && e.key === "f") {
     e.preventDefault();
     searchInput.focus();
+  } // Add keyboard shortcut for toggling ChatEmote only mode
+  else if (e.ctrlKey && e.key === "c" && !searchInput.matches(":focus")) {
+    e.preventDefault();
+    toggleChatEmoteOnly();
   }
 });
+// Add keyboard shortcut for toggling ChatEmote only mode
+window.addEventListener("keydown", function (e) {});
 
 // Helper function to get all paths (for favorites and recent functionality)
 function getAllPaths() {
@@ -112,6 +119,24 @@ function loadCopyImageMode() {
   }
 }
 
+// Save chatEmoteOnly to localStorage
+function saveChatEmoteOnly() {
+  localStorage.setItem("chatEmoteOnly", JSON.stringify(chatEmoteOnly));
+}
+
+// Load chatEmoteOnly from localStorage
+function loadChatEmoteOnly() {
+  const mode = localStorage.getItem("chatEmoteOnly");
+  if (mode !== null) {
+    try {
+      chatEmoteOnly = JSON.parse(mode);
+    } catch (e) {
+      console.error("Error loading ChatEmote only mode:", e);
+      chatEmoteOnly = false;
+    }
+  }
+}
+
 // Function to show toast notification
 function showToast() {
   toast.style.display = "block";
@@ -190,6 +215,17 @@ function toggleView() {
   updateViewToggleLabel();
   saveCategorizedView();
   updateAllImagesView();
+}
+
+function toggleChatEmoteOnly() {
+  chatEmoteOnly = !chatEmoteOnly;
+  updateChatEmoteOnlyLabel();
+  saveChatEmoteOnly();
+
+  // Update all views to reflect the filter
+  updateAllImagesView();
+  updateFavoritesView();
+  updateRecentView();
 }
 
 // Function to add to recent
@@ -283,6 +319,11 @@ function updateFavoritesView() {
     favoritesContainer.innerHTML =
       '<p class="text-gray-500 italic p-2">No favorites matching your search</p>';
   }
+}
+
+function updateChatEmoteOnlyLabel() {
+  const label = document.getElementById("chatEmoteOnlyLabel");
+  label.textContent = chatEmoteOnly ? "Chat Emote Only" : "All Emotes";
 }
 
 // Function to update all images view
@@ -396,6 +437,13 @@ function updateAllImagesView() {
 
 // Function to check if an emote matches the search query
 function emoteMatchesSearch(emote) {
+  if (!emote) return false;
+
+  // Check if we're in ChatEmote only mode
+  if (chatEmoteOnly && !emote.path.includes("ChatEmote/")) {
+    return false;
+  }
+
   if (!searchQuery) return true;
 
   const path = emote.path.toLowerCase();
@@ -565,7 +613,10 @@ function initializeGallery() {
   loadCopyImageMode();
   saveCopyImageMode();
   loadCategorizedView();
+  loadChatEmoteOnly();
+
   updateViewToggleLabel();
+  updateChatEmoteOnlyLabel();
 
   if (searchInput) {
     searchInput.addEventListener("input", handleSearch);
