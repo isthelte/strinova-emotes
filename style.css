@@ -196,3 +196,49 @@ h1 {
 .search-input::placeholder {
   color: var(--discord-muted);
 }
+
+/* Button toggle animation */
+.toggle-btn-active {
+  animation: buttonPulse 0.3s ease-out;
+}
+
+@keyframes buttonPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Search input focus/unfocus animation */
+.search-input {
+  transition: all 0.25s ease-out;
+}
+
+.search-input:focus {
+  outline: 2px solid var(--discord-blurple);
+  background-color: var(--discord-darker);
+  transform: scale(1.03);
+  box-shadow: 0 0 8px rgba(88, 101, 242, 0.5);
+}
+
+/* Add animation for focus/unfocus feedback */
+.input-focus-flash {
+  animation: focusFlash 0.4s ease-out;
+}
+
+@keyframes focusFlash {
+  0% {
+    box-shadow: 0 0 0 0 rgba(88, 101, 242, 0);
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(88, 101, 242, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(88, 101, 242, 0);
+  }
+}

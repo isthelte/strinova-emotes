@@ -22,9 +22,15 @@ window.addEventListener("keydown", function (e) {
     // If search input is already focused, blur it
     if (document.activeElement === searchInput) {
       searchInput.blur();
+
+      // Add visual feedback when unfocusing
+      searchInput.classList.add("input-focus-flash");
+      setTimeout(() => searchInput.classList.remove("input-focus-flash"), 400);
     } else {
-      // Otherwise focus it
+      // Otherwise focus it with animation
       searchInput.focus();
+      searchInput.classList.add("input-focus-flash");
+      setTimeout(() => searchInput.classList.remove("input-focus-flash"), 400);
     }
   }
 
@@ -214,13 +220,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function toggleLabel() {
   copyImageMode = !copyImageMode;
+
+  // Add animation
+  const label = document.getElementById("copyModeLabel");
+  label.classList.add("toggle-btn-active");
+  setTimeout(() => label.classList.remove("toggle-btn-active"), 300);
+
   updateToggleLabel();
   saveCopyImageMode();
 }
 
-// Function to toggle view mode
 function toggleView() {
   categorizedView = !categorizedView;
+
+  // Add animation
+  const label = document.getElementById("viewModeLabel");
+  label.classList.add("toggle-btn-active");
+  setTimeout(() => label.classList.remove("toggle-btn-active"), 300);
+
   updateViewToggleLabel();
   saveCategorizedView();
   updateAllImagesView();
@@ -228,6 +245,12 @@ function toggleView() {
 
 function toggleChatEmoteOnly() {
   chatEmoteOnly = !chatEmoteOnly;
+
+  // Add animation
+  const label = document.getElementById("chatEmoteOnlyLabel");
+  label.classList.add("toggle-btn-active");
+  setTimeout(() => label.classList.remove("toggle-btn-active"), 300);
+
   updateChatEmoteOnlyLabel();
   saveChatEmoteOnly();
 
