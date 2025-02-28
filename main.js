@@ -18,9 +18,18 @@ const toast = document.getElementById("toast");
 window.addEventListener("keydown", function (e) {
   if (e.ctrlKey && e.key === "f") {
     e.preventDefault();
-    searchInput.focus();
-  } // Add keyboard shortcut for toggling ChatEmote only mode
-  else if (e.ctrlKey && e.key === "c" && !searchInput.matches(":focus")) {
+
+    // If search input is already focused, blur it
+    if (document.activeElement === searchInput) {
+      searchInput.blur();
+    } else {
+      // Otherwise focus it
+      searchInput.focus();
+    }
+  }
+
+  // Add keyboard shortcut for toggling ChatEmote only mode
+  if (e.ctrlKey && e.key === "c" && !searchInput.matches(":focus")) {
     e.preventDefault();
     toggleChatEmoteOnly();
   }
