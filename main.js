@@ -563,25 +563,27 @@ function createImageElement(emote) {
 
   img.addEventListener("mouseenter", function () {
     container.style.opacity = "0";
-
-    fullSizeImg.style.display = "block";
     fullSizeImg.src = url;
 
-    // Calculate optimal position for preview
-    const rect = img.getBoundingClientRect();
-    const originalImgWidth = fullSizeImg.width;
-    const originalImgHeight = fullSizeImg.height;
-    const viewportWidth = window.innerWidth;
-    const viewportHeight = window.innerHeight;
+    fullSizeImg.onload = () => {
+      // Calculate optimal position for preview
+      const rect = img.getBoundingClientRect();
+      const originalImgWidth = fullSizeImg.width;
+      const originalImgHeight = fullSizeImg.height;
+      const viewportWidth = window.innerWidth;
+      const viewportHeight = window.innerHeight;
 
-    fullSizeImg.style.top = `${Math.min(
-      viewportHeight - originalImgHeight,
-      rect.top - originalImgWidth / 2 + img.width / 2
-    )}px`;
-    fullSizeImg.style.left = `${Math.min(
-      viewportWidth - originalImgWidth,
-      Math.max(0, rect.left - originalImgHeight / 2 + img.height / 2)
-    )}px`;
+      fullSizeImg.style.top = `${Math.min(
+        viewportHeight - originalImgHeight,
+        rect.top - originalImgWidth / 2 + img.width / 2
+      )}px`;
+      fullSizeImg.style.left = `${Math.min(
+        viewportWidth - originalImgWidth,
+        Math.max(0, rect.left - originalImgHeight / 2 + img.height / 2)
+      )}px`;
+
+      fullSizeImg.style.display = "block";
+    };
 
     // Add hover state to container
     container.classList.add("emote-hovered");
