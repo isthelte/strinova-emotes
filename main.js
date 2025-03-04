@@ -569,12 +569,18 @@ function createImageElement(emote) {
 
     // Calculate optimal position for preview
     const rect = img.getBoundingClientRect();
-    fullSizeImg.style.top = `${
-      rect.top - fullSizeImg.width / 2 + img.width / 2
-    }px`;
-    fullSizeImg.style.left = `${Math.max(
-      0,
-      rect.left - fullSizeImg.height / 2 + img.height / 2
+    const originalImgWidth = fullSizeImg.width;
+    const originalImgHeight = fullSizeImg.height;
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+
+    fullSizeImg.style.top = `${Math.min(
+      viewportHeight - originalImgHeight,
+      rect.top - originalImgWidth / 2 + img.width / 2
+    )}px`;
+    fullSizeImg.style.left = `${Math.min(
+      viewportWidth - originalImgWidth,
+      Math.max(0, rect.left - originalImgHeight / 2 + img.height / 2)
     )}px`;
 
     // Add hover state to container
