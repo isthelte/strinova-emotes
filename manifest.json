@@ -2,7 +2,7 @@
   "name": "Strinova Emotes Gallery",
   "short_name": "Strinova Emotes",
   "description": "A collection of all the emotes from Strinova, handpicked from the Strinova wiki!",
-  "start_url": "/index.html",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#36393f",
   "theme_color": "#36393f",
