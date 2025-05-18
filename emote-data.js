@@ -486,6 +486,36 @@ const emoteData = {
         id: "60001018",
       },
     ],
+    Mara: [
+      {
+        path: "EmotesWiki/Mara_60000155.png",
+        id: "60000155",
+      },
+      {
+        path: "EmotesWiki/Mara_60000156.png",
+        id: "60000156",
+      },
+      {
+        path: "EmotesWiki/Mara_60000159.png",
+        id: "60000159",
+      },
+      {
+        path: "EmotesWiki/Mara_60000160.png",
+        id: "60000160",
+      },
+      {
+        path: "EmotesWiki/Mara_60000171.png",
+        id: "60000171",
+      },
+      {
+        path: "EmotesWiki/Mara_60000172.png",
+        id: "60000172",
+      },
+      {
+        path: "EmotesWiki/Mara_60000173.png",
+        id: "60000173",
+      },
+    ],
     Meredith: [
       {
         path: "EmotesWiki/Meredith_60000007.png",
