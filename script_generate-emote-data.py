@@ -4,7 +4,7 @@ import json
 import re
 
 # Path to the emotes folder
-emotes_folder_names = ['EmotesWiki', 'ChatEmote', 'PopTeamEpic']
+emotes_folder_names = ['EmotesWiki', 'ChatEmote', 'EmotesWikiExtra', 'PopTeamEpic']
 # Path to the output file
 output_file_path = 'emote-data.js'
 
@@ -13,6 +13,16 @@ def parse_emote_filename(folder, filename):
     if folder in ['EmotesWiki', 'ChatEmote']:
         # Expected format: CharacterName_ID.png
         match = re.match(r'([^_]+)_(\d+)\.png', filename)
+        if match:
+            character_name, emote_id = match.groups()
+            return {
+                'character': character_name,
+                'id': emote_id,
+                'path': f'{folder}/{filename}'
+            }
+    elif folder == 'EmotesWikiExtra':
+        # Expected format: CharacterName_ID.png
+        match = re.match(r'([^_]+)_(.+)\.png', filename)
         if match:
             character_name, emote_id = match.groups()
             return {
@@ -30,6 +40,7 @@ def generate_emote_data():
     emote_data = {
         'EmotesWiki': {},
         'ChatEmote': {},
+        'EmotesWikiExtra': {},
         'PopTeamEpic': []
     }
     
@@ -52,7 +63,7 @@ def generate_emote_data():
                 print(f"Warning: Could not parse filename {filename}")
                 continue
                 
-            if folder_name in ['EmotesWiki', 'ChatEmote']:
+            if folder_name in ['EmotesWiki', 'ChatEmote', 'EmotesWikiExtra']:
                 character = parsed_data['character']
                 if character not in emote_data[folder_name]:
                     emote_data[folder_name][character] = []

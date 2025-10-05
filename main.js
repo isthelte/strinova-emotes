@@ -48,7 +48,7 @@ function getAllPaths() {
   const paths = [];
 
   // Process EmotesWiki and ChatEmote
-  ["EmotesWiki", "ChatEmote"].forEach((folder) => {
+  ["EmotesWiki", "ChatEmote", "EmotesWikiExtra"].forEach((folder) => {
     if (emoteData[folder]) {
       Object.values(emoteData[folder]).forEach((characterEmotes) => {
         characterEmotes.forEach((emote) => paths.push(emote.path));
@@ -364,69 +364,71 @@ function updateAllImagesView() {
 
   if (categorizedView) {
     // Categorized view - organized by folder and character
-    ["EmotesWiki", "ChatEmote", "PopTeamEpic"].forEach((folder) => {
-      if (emoteData[folder]) {
-        const folderSection = document.createElement("div");
-        folderSection.className = "mb-8";
+    ["EmotesWiki", "ChatEmote", "EmotesWikiExtra", "PopTeamEpic"].forEach(
+      (folder) => {
+        if (emoteData[folder]) {
+          const folderSection = document.createElement("div");
+          folderSection.className = "mb-8";
 
-        const folderHeader = document.createElement("h2");
-        folderHeader.className = "text-lg font-medium mb-4";
-        folderHeader.textContent = folder;
-        folderSection.appendChild(folderHeader);
+          const folderHeader = document.createElement("h2");
+          folderHeader.className = "text-lg font-medium mb-4";
+          folderHeader.textContent = folder;
+          folderSection.appendChild(folderHeader);
 
-        let hasVisibleEmotes = false;
+          let hasVisibleEmotes = false;
 
-        if (folder === "PopTeamEpic") {
-          const emoteContainer = document.createElement("div");
-          emoteContainer.className = "flex flex-wrap";
+          if (folder === "PopTeamEpic") {
+            const emoteContainer = document.createElement("div");
+            emoteContainer.className = "flex flex-wrap";
 
-          emoteData[folder].forEach((emote) => {
-            // Only show if it matches the search
-            if (emoteMatchesSearch(emote)) {
-              const container = createImageElement(emote);
-              emoteContainer.appendChild(container);
-              hasVisibleEmotes = true;
-            }
-          });
-
-          folderSection.appendChild(emoteContainer);
-        } else {
-          Object.entries(emoteData[folder]).forEach(([character, emotes]) => {
-            const characterSection = document.createElement("div");
-            characterSection.className = "mb-4";
-
-            const characterHeader = document.createElement("h3");
-            characterHeader.className = "text-md font-medium mb-2 ml-4";
-            characterHeader.textContent = character;
-            characterSection.appendChild(characterHeader);
-
-            const emotesContainer = document.createElement("div");
-            emotesContainer.className = "flex flex-wrap ml-8";
-
-            let characterHasVisibleEmotes = false;
-
-            emotes.forEach((emote) => {
+            emoteData[folder].forEach((emote) => {
               // Only show if it matches the search
               if (emoteMatchesSearch(emote)) {
                 const container = createImageElement(emote);
-                emotesContainer.appendChild(container);
-                characterHasVisibleEmotes = true;
+                emoteContainer.appendChild(container);
                 hasVisibleEmotes = true;
               }
             });
 
-            if (characterHasVisibleEmotes) {
-              characterSection.appendChild(emotesContainer);
-              folderSection.appendChild(characterSection);
-            }
-          });
-        }
+            folderSection.appendChild(emoteContainer);
+          } else {
+            Object.entries(emoteData[folder]).forEach(([character, emotes]) => {
+              const characterSection = document.createElement("div");
+              characterSection.className = "mb-4";
 
-        if (hasVisibleEmotes) {
-          allContainer.appendChild(folderSection);
+              const characterHeader = document.createElement("h3");
+              characterHeader.className = "text-md font-medium mb-2 ml-4";
+              characterHeader.textContent = character;
+              characterSection.appendChild(characterHeader);
+
+              const emotesContainer = document.createElement("div");
+              emotesContainer.className = "flex flex-wrap ml-8";
+
+              let characterHasVisibleEmotes = false;
+
+              emotes.forEach((emote) => {
+                // Only show if it matches the search
+                if (emoteMatchesSearch(emote)) {
+                  const container = createImageElement(emote);
+                  emotesContainer.appendChild(container);
+                  characterHasVisibleEmotes = true;
+                  hasVisibleEmotes = true;
+                }
+              });
+
+              if (characterHasVisibleEmotes) {
+                characterSection.appendChild(emotesContainer);
+                folderSection.appendChild(characterSection);
+              }
+            });
+          }
+
+          if (hasVisibleEmotes) {
+            allContainer.appendChild(folderSection);
+          }
         }
       }
-    });
+    );
   } else {
     // Flat view - all emotes in a single grid
     const container = document.createElement("div");
@@ -434,13 +436,36 @@ function updateAllImagesView() {
 
     // Get all emotes in a flat array
     const allEmotes = [];
-    ["EmotesWiki", "ChatEmote"].forEach((folder) => {
+    // Collect emotes from EmotesWiki and EmotesWikiExtra, grouped by character
+    const characterGroups = {};
+
+    ["EmotesWiki", "EmotesWikiExtra"].forEach((folder) => {
       if (emoteData[folder]) {
-        Object.values(emoteData[folder]).forEach((characterEmotes) => {
-          allEmotes.push(...characterEmotes);
-        });
+        Object.entries(emoteData[folder]).forEach(
+          ([characterName, characterEmotes]) => {
+            if (!characterGroups[characterName]) {
+              characterGroups[characterName] = [];
+            }
+            characterGroups[characterName].push(...characterEmotes);
+          }
+        );
       }
     });
+
+    // Sort character names alphabetically and add their emotes
+    Object.keys(characterGroups)
+      .sort((a, b) => a.localeCompare(b))
+      .forEach((characterName) => {
+        allEmotes.push(...characterGroups[characterName]);
+      });
+
+    // Then add ChatEmote separately
+    if (emoteData["ChatEmote"]) {
+      Object.values(emoteData["ChatEmote"]).forEach((characterEmotes) => {
+        allEmotes.push(...characterEmotes);
+      });
+    }
+
     if (emoteData.PopTeamEpic) {
       allEmotes.push(...emoteData.PopTeamEpic);
     }
@@ -487,7 +512,7 @@ function emoteMatchesSearch(emote) {
 // Function to find an emote object by its path
 function findEmoteByPath(path) {
   // Check in all folders
-  for (const folder of ["EmotesWiki", "ChatEmote"]) {
+  for (const folder of ["EmotesWiki", "EmotesWikiExtra", "ChatEmote"]) {
     if (emoteData[folder]) {
       for (const character in emoteData[folder]) {
         const found = emoteData[folder][character].find(
