@@ -1244,6 +1244,28 @@ const emoteData = {
         "id": "Emotes_extra_Celestia_\u6ca1\u4e8b\u5427"
       }
     ],
+    "Chiyo": [
+      {
+        "path": "EmotesWikiExtra/Chiyo_Emotes_extra_Chiyo_12\u5f39-01.png",
+        "id": "Emotes_extra_Chiyo_12\u5f39-01"
+      },
+      {
+        "path": "EmotesWikiExtra/Chiyo_Emotes_extra_Chiyo_12\u5f39-02.png",
+        "id": "Emotes_extra_Chiyo_12\u5f39-02"
+      },
+      {
+        "path": "EmotesWikiExtra/Chiyo_Emotes_extra_Chiyo_12\u5f39-03.png",
+        "id": "Emotes_extra_Chiyo_12\u5f39-03"
+      },
+      {
+        "path": "EmotesWikiExtra/Chiyo_Emotes_extra_Chiyo_12\u5f39-04.png",
+        "id": "Emotes_extra_Chiyo_12\u5f39-04"
+      },
+      {
+        "path": "EmotesWikiExtra/Chiyo_Emotes_extra_Chiyo_12\u5f39-05.png",
+        "id": "Emotes_extra_Chiyo_12\u5f39-05"
+      }
+    ],
     "Eika": [
       {
         "path": "EmotesWikiExtra/Eika_Emotes_extra_6\u5f39-16.png",
@@ -1302,6 +1324,26 @@ const emoteData = {
     ],
     "Flavia": [
       {
+        "path": "EmotesWikiExtra/Flavia_Emotes_extra_Flavia_10\u5f39-07.png",
+        "id": "Emotes_extra_Flavia_10\u5f39-07"
+      },
+      {
+        "path": "EmotesWikiExtra/Flavia_Emotes_extra_Flavia_10\u5f39-08.png",
+        "id": "Emotes_extra_Flavia_10\u5f39-08"
+      },
+      {
+        "path": "EmotesWikiExtra/Flavia_Emotes_extra_Flavia_10\u5f39-09.png",
+        "id": "Emotes_extra_Flavia_10\u5f39-09"
+      },
+      {
+        "path": "EmotesWikiExtra/Flavia_Emotes_extra_Flavia_10\u5f39-10.png",
+        "id": "Emotes_extra_Flavia_10\u5f39-10"
+      },
+      {
+        "path": "EmotesWikiExtra/Flavia_Emotes_extra_Flavia_10\u5f39-11.png",
+        "id": "Emotes_extra_Flavia_10\u5f39-11"
+      },
+      {
         "path": "EmotesWikiExtra/Flavia_Emotes_extra_Flavia_\u4e94\u5f39-1.png",
         "id": "Emotes_extra_Flavia_\u4e94\u5f39-1"
       },
@@ -1350,6 +1392,22 @@ const emoteData = {
     ],
     "Fuchsia": [
       {
+        "path": "EmotesWikiExtra/Fuchsia_Emotes_extra_Fuchsia_11\u5f39-15.png",
+        "id": "Emotes_extra_Fuchsia_11\u5f39-15"
+      },
+      {
+        "path": "EmotesWikiExtra/Fuchsia_Emotes_extra_Fuchsia_11\u5f39-16.png",
+        "id": "Emotes_extra_Fuchsia_11\u5f39-16"
+      },
+      {
+        "path": "EmotesWikiExtra/Fuchsia_Emotes_extra_Fuchsia_12\u5f39-15.png",
+        "id": "Emotes_extra_Fuchsia_12\u5f39-15"
+      },
+      {
+        "path": "EmotesWikiExtra/Fuchsia_Emotes_extra_Fuchsia_12\u5f39-16.png",
+        "id": "Emotes_extra_Fuchsia_12\u5f39-16"
+      },
+      {
         "path": "EmotesWikiExtra/Fuchsia_Emotes_extra_Fuchsia_\u4e94\u5f39-10.png",
         "id": "Emotes_extra_Fuchsia_\u4e94\u5f39-10"
       },
@@ -1371,6 +1429,22 @@ const emoteData = {
       }
     ],
     "Galatea": [
+      {
+        "path": "EmotesWikiExtra/Galatea_Emotes_extra_Galatea_11\u5f39-13.png",
+        "id": "Emotes_extra_Galatea_11\u5f39-13"
+      },
+      {
+        "path": "EmotesWikiExtra/Galatea_Emotes_extra_Galatea_11\u5f39-14.png",
+        "id": "Emotes_extra_Galatea_11\u5f39-14"
+      },
+      {
+        "path": "EmotesWikiExtra/Galatea_Emotes_extra_Galatea_12\u5f39-08.png",
+        "id": "Emotes_extra_Galatea_12\u5f39-08"
+      },
+      {
+        "path": "EmotesWikiExtra/Galatea_Emotes_extra_Galatea_12\u5f39-09.png",
+        "id": "Emotes_extra_Galatea_12\u5f39-09"
+      },
       {
         "path": "EmotesWikiExtra/Galatea_Emotes_extra_Galatea_7\u5f39-1.png",
         "id": "Emotes_extra_Galatea_7\u5f39-1"
@@ -1582,7 +1656,53 @@ const emoteData = {
         "id": "Emotes_extra_tutorial_8"
       }
     ],
+    "Leona": [
+      {
+        "path": "EmotesWikiExtra/Leona_Emotes_extra_Leona_10\u5f39-01.png",
+        "id": "Emotes_extra_Leona_10\u5f39-01"
+      },
+      {
+        "path": "EmotesWikiExtra/Leona_Emotes_extra_Leona_10\u5f39-02.png",
+        "id": "Emotes_extra_Leona_10\u5f39-02"
+      },
+      {
+        "path": "EmotesWikiExtra/Leona_Emotes_extra_Leona_10\u5f39-03.png",
+        "id": "Emotes_extra_Leona_10\u5f39-03"
+      },
+      {
+        "path": "EmotesWikiExtra/Leona_Emotes_extra_Leona_10\u5f39-04.png",
+        "id": "Emotes_extra_Leona_10\u5f39-04"
+      },
+      {
+        "path": "EmotesWikiExtra/Leona_Emotes_extra_Leona_10\u5f39-05.png",
+        "id": "Emotes_extra_Leona_10\u5f39-05"
+      },
+      {
+        "path": "EmotesWikiExtra/Leona_Emotes_extra_Leona_10\u5f39-06.png",
+        "id": "Emotes_extra_Leona_10\u5f39-06"
+      }
+    ],
     "Maddelena": [
+      {
+        "path": "EmotesWikiExtra/Maddelena_Emotes_extra_Maddelena_11\u5f39-07.png",
+        "id": "Emotes_extra_Maddelena_11\u5f39-07"
+      },
+      {
+        "path": "EmotesWikiExtra/Maddelena_Emotes_extra_Maddelena_11\u5f39-08.png",
+        "id": "Emotes_extra_Maddelena_11\u5f39-08"
+      },
+      {
+        "path": "EmotesWikiExtra/Maddelena_Emotes_extra_Maddelena_11\u5f39-09.png",
+        "id": "Emotes_extra_Maddelena_11\u5f39-09"
+      },
+      {
+        "path": "EmotesWikiExtra/Maddelena_Emotes_extra_Maddelena_12\u5f39-06.png",
+        "id": "Emotes_extra_Maddelena_12\u5f39-06"
+      },
+      {
+        "path": "EmotesWikiExtra/Maddelena_Emotes_extra_Maddelena_12\u5f39-07.png",
+        "id": "Emotes_extra_Maddelena_12\u5f39-07"
+      },
       {
         "path": "EmotesWikiExtra/Maddelena_Emotes_extra_Meddelena_\u4eae\u778e\u4e86.png",
         "id": "Emotes_extra_Meddelena_\u4eae\u778e\u4e86"
@@ -1604,7 +1724,49 @@ const emoteData = {
         "id": "Emotes_extra_Meddelena_\u7d2f\u6b7b\u4e86"
       }
     ],
+    "Mara": [
+      {
+        "path": "EmotesWikiExtra/Mara_Emotes_extra_Mara_11\u5f39-01.png",
+        "id": "Emotes_extra_Mara_11\u5f39-01"
+      },
+      {
+        "path": "EmotesWikiExtra/Mara_Emotes_extra_Mara_11\u5f39-02.png",
+        "id": "Emotes_extra_Mara_11\u5f39-02"
+      },
+      {
+        "path": "EmotesWikiExtra/Mara_Emotes_extra_Mara_11\u5f39-03.png",
+        "id": "Emotes_extra_Mara_11\u5f39-03"
+      },
+      {
+        "path": "EmotesWikiExtra/Mara_Emotes_extra_Mara_11\u5f39-04.png",
+        "id": "Emotes_extra_Mara_11\u5f39-04"
+      },
+      {
+        "path": "EmotesWikiExtra/Mara_Emotes_extra_Mara_11\u5f39-05.png",
+        "id": "Emotes_extra_Mara_11\u5f39-05"
+      },
+      {
+        "path": "EmotesWikiExtra/Mara_Emotes_extra_Mara_11\u5f39-06.png",
+        "id": "Emotes_extra_Mara_11\u5f39-06"
+      },
+      {
+        "path": "EmotesWikiExtra/Mara_Emotes_extra_Mara_12\u5f39-10.png",
+        "id": "Emotes_extra_Mara_12\u5f39-10"
+      },
+      {
+        "path": "EmotesWikiExtra/Mara_Emotes_extra_Mara_12\u5f39-11.png",
+        "id": "Emotes_extra_Mara_12\u5f39-11"
+      }
+    ],
     "Meredith": [
+      {
+        "path": "EmotesWikiExtra/Meredith_Emotes_extra_12\u4e94\u5f39-13.png",
+        "id": "Emotes_extra_12\u4e94\u5f39-13"
+      },
+      {
+        "path": "EmotesWikiExtra/Meredith_Emotes_extra_Meredith_12\u5f39-12.png",
+        "id": "Emotes_extra_Meredith_12\u5f39-12"
+      },
       {
         "path": "EmotesWikiExtra/Meredith_Emotes_extra_Meredith_\u4e94\u5f39-11.png",
         "id": "Emotes_extra_Meredith_\u4e94\u5f39-11"
@@ -1696,11 +1858,31 @@ const emoteData = {
         "id": "Emotes_extra_tutorial_5"
       },
       {
+        "path": "EmotesWikiExtra/Michele_Emotes_extra_tutorial_6.png",
+        "id": "Emotes_extra_tutorial_6"
+      },
+      {
         "path": "EmotesWikiExtra/Michele_Emotes_extra_tutorial_9.png",
         "id": "Emotes_extra_tutorial_9"
+      },
+      {
+        "path": "EmotesWikiExtra/Michele_Emotes_extra_\u4e94\u5f39-4.png",
+        "id": "Emotes_extra_\u4e94\u5f39-4"
+      },
+      {
+        "path": "EmotesWikiExtra/Michele_Emotes_extra_\u4e94\u5f39-5.png",
+        "id": "Emotes_extra_\u4e94\u5f39-5"
       }
     ],
     "Ming": [
+      {
+        "path": "EmotesWikiExtra/Ming_Emotes_extra_12\u4e94\u5f39-13.png",
+        "id": "Emotes_extra_12\u4e94\u5f39-13"
+      },
+      {
+        "path": "EmotesWikiExtra/Ming_Emotes_extra_6\u5f39-16.png",
+        "id": "Emotes_extra_6\u5f39-16"
+      },
       {
         "path": "EmotesWikiExtra/Ming_Emotes_extra_Ming_6\u5f39-12.png",
         "id": "Emotes_extra_Ming_6\u5f39-12"
@@ -1740,6 +1922,26 @@ const emoteData = {
     ],
     "Nobunaga": [
       {
+        "path": "EmotesWikiExtra/Nobunaga_Emotes_extra_Nobunaga_10\u5f39-12.png",
+        "id": "Emotes_extra_Nobunaga_10\u5f39-12"
+      },
+      {
+        "path": "EmotesWikiExtra/Nobunaga_Emotes_extra_Nobunaga_10\u5f39-13.png",
+        "id": "Emotes_extra_Nobunaga_10\u5f39-13"
+      },
+      {
+        "path": "EmotesWikiExtra/Nobunaga_Emotes_extra_Nobunaga_10\u5f39-14.png",
+        "id": "Emotes_extra_Nobunaga_10\u5f39-14"
+      },
+      {
+        "path": "EmotesWikiExtra/Nobunaga_Emotes_extra_Nobunaga_10\u5f39-15.png",
+        "id": "Emotes_extra_Nobunaga_10\u5f39-15"
+      },
+      {
+        "path": "EmotesWikiExtra/Nobunaga_Emotes_extra_Nobunaga_10\u5f39-16.png",
+        "id": "Emotes_extra_Nobunaga_10\u5f39-16"
+      },
+      {
         "path": "EmotesWikiExtra/Nobunaga_Emotes_extra_Nobunaga_\u4ea4\u7ed9\u6211.png",
         "id": "Emotes_extra_Nobunaga_\u4ea4\u7ed9\u6211"
       },
@@ -1757,6 +1959,18 @@ const emoteData = {
       }
     ],
     "Reiichi": [
+      {
+        "path": "EmotesWikiExtra/Reiichi_Emotes_extra_Reiichi_11\u5f39-10.png",
+        "id": "Emotes_extra_Reiichi_11\u5f39-10"
+      },
+      {
+        "path": "EmotesWikiExtra/Reiichi_Emotes_extra_Reiichi_11\u5f39-11.png",
+        "id": "Emotes_extra_Reiichi_11\u5f39-11"
+      },
+      {
+        "path": "EmotesWikiExtra/Reiichi_Emotes_extra_Reiichi_11\u5f39-12.png",
+        "id": "Emotes_extra_Reiichi_11\u5f39-12"
+      },
       {
         "path": "EmotesWikiExtra/Reiichi_Emotes_extra_Reiichi_\u5435\u6b7b\u4e86.png",
         "id": "Emotes_extra_Reiichi_\u5435\u6b7b\u4e86"

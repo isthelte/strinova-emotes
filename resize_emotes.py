@@ -4,6 +4,7 @@ import os
 def resize_images(folder_path, max_size=256):
     """
     Resize images in folder if they exceed max_size in either dimension.
+    Maintains aspect ratio by resizing based on the larger dimension.
     
     Args:
         folder_path: Path to the folder containing images
@@ -41,10 +42,18 @@ def resize_images(folder_path, max_size=256):
                 
                 # Check if image needs resizing
                 if width > max_size or height > max_size:
-                    print(f"Resizing: {filename} ({width}x{height}) -> ({max_size}x{max_size})")
+                    # Calculate new dimensions maintaining aspect ratio
+                    if width > height:
+                        new_width = max_size
+                        new_height = int(height * (max_size / width))
+                    else:
+                        new_height = max_size
+                        new_width = int(width * (max_size / height))
                     
-                    # Resize image to 256x256
-                    resized_img = img.resize((max_size, max_size), Image.Resampling.LANCZOS)
+                    print(f"Resizing: {filename} ({width}x{height}) -> ({new_width}x{new_height})")
+                    
+                    # Resize image maintaining aspect ratio
+                    resized_img = img.resize((new_width, new_height), Image.Resampling.LANCZOS)
                     
                     # Save the resized image (overwrite original)
                     resized_img.save(file_path)
