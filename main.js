@@ -428,7 +428,7 @@ function updateAllImagesView() {
             allContainer.appendChild(folderSection);
           }
         }
-      }
+      },
     );
   } else {
     // Flat view - all emotes in a single grid
@@ -448,7 +448,7 @@ function updateAllImagesView() {
               characterGroups[characterName] = [];
             }
             characterGroups[characterName].push(...characterEmotes);
-          }
+          },
         );
       }
     });
@@ -517,7 +517,7 @@ function findEmoteByPath(path) {
     if (emoteData[folder]) {
       for (const character in emoteData[folder]) {
         const found = emoteData[folder][character].find(
-          (emote) => emote.path === path
+          (emote) => emote.path === path,
         );
         if (found) return found;
       }
@@ -609,11 +609,11 @@ function createImageElement(emote) {
 
       fullSizeImg.style.top = `${Math.min(
         viewportHeight - originalImgHeight,
-        rect.top - originalImgWidth / 2 + img.width / 2
+        rect.top - originalImgWidth / 2 + img.width / 2,
       )}px`;
       fullSizeImg.style.left = `${Math.min(
         viewportWidth - originalImgWidth,
-        Math.max(0, rect.left - originalImgHeight / 2 + img.height / 2)
+        Math.max(0, rect.left - originalImgHeight / 2 + img.height / 2),
       )}px`;
 
       fullSizeImg.style.display = "block";
