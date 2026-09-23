@@ -13,6 +13,7 @@ const favoritesContainer = document.getElementById("favorites-container");
 const recentContainer = document.getElementById("recent-container");
 const fullSizeImg = document.getElementById("fullImg");
 const toast = document.getElementById("toast");
+const supportsHover = window.matchMedia("(hover: hover)").matches;
 
 // Override Ctrl+F to focus on emote search input
 window.addEventListener("keydown", function (e) {
@@ -558,6 +559,14 @@ function createImageElement(emote) {
 
     copyToClipboard(url, el.target);
     addToRecent(url);
+
+    if (!supportsHover) {
+      setTimeout(() => {
+        container.style.opacity = "1";
+        fullSizeImg.style.display = "none";
+        container.classList.remove("emote-hovered");
+      }, 300);
+    }
   });
 
   // Add right-click event listener for ChatEmote emotes
