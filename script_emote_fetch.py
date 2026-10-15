@@ -13,20 +13,24 @@ save_folder = "EmotesWiki"
 os.makedirs(save_folder, exist_ok=True)
 
 # Fetch the webpage content
-response = requests.get(webpage_url, timeout=5, headers=headers)
-if response.status_code != 200:
-    print("Failed to fetch the webpage." + response.content.decode())
-    
-    exit()
+# response = requests.get(webpage_url, timeout=5, headers=headers)
+# if response.status_code != 200:
+#     print("Failed to fetch the webpage.")
+#     print(response.status_code)
+#     # print(response.content.decode())
+#     exit()
+html_content = open("emotes.html", "r", encoding="utf-8").read()
+
 
 # Parse the HTML content
-soup = BeautifulSoup(response.text, "html.parser")
+# soup = BeautifulSoup(response.text, "html.parser")
+soup = BeautifulSoup(html_content, "html.parser")
 
 # Regex pattern to find emote ID strings
 pattern = r"[a-z0-9]/[a-z0-9][a-z0-9]/Emote_\d{8}"
 
 # Find all occurrences of the emote ID
-matches = re.findall(pattern, response.text)
+matches = re.findall(pattern, html_content)
 unique_ids = set(matches)  # Use a set to remove duplicates
 
 print(f"Found {len(unique_ids)} emotes.")

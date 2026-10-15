@@ -54,6 +54,14 @@ const emoteData = {
       {
         "path": "EmotesWiki/Bai Mo_60000163.png",
         "id": "60000163"
+      },
+      {
+        "path": "EmotesWiki/Bai Mo_60000438.png",
+        "id": "60000438"
+      },
+      {
+        "path": "EmotesWiki/Bai Mo_60000439.png",
+        "id": "60000439"
       }
     ],
     "Celestia": [
@@ -126,6 +134,16 @@ const emoteData = {
       {
         "path": "EmotesWiki/Chiyo_60000356.png",
         "id": "60000356"
+      }
+    ],
+    "Cielle": [
+      {
+        "path": "EmotesWiki/Cielle_60000387.png",
+        "id": "60000387"
+      },
+      {
+        "path": "EmotesWiki/Cielle_60000388.png",
+        "id": "60000388"
       }
     ],
     "Eika": [
@@ -222,6 +240,110 @@ const emoteData = {
       {
         "path": "EmotesWiki/Emote_60000354.png",
         "id": "60000354"
+      },
+      {
+        "path": "EmotesWiki/Emote_60000377.png",
+        "id": "60000377"
+      },
+      {
+        "path": "EmotesWiki/Emote_60000378.png",
+        "id": "60000378"
+      },
+      {
+        "path": "EmotesWiki/Emote_60000379.png",
+        "id": "60000379"
+      },
+      {
+        "path": "EmotesWiki/Emote_60000380.png",
+        "id": "60000380"
+      },
+      {
+        "path": "EmotesWiki/Emote_60000381.png",
+        "id": "60000381"
+      },
+      {
+        "path": "EmotesWiki/Emote_60000382.png",
+        "id": "60000382"
+      },
+      {
+        "path": "EmotesWiki/Emote_60000383.png",
+        "id": "60000383"
+      },
+      {
+        "path": "EmotesWiki/Emote_60000384.png",
+        "id": "60000384"
+      },
+      {
+        "path": "EmotesWiki/Emote_60000385.png",
+        "id": "60000385"
+      },
+      {
+        "path": "EmotesWiki/Emote_60000386.png",
+        "id": "60000386"
+      },
+      {
+        "path": "EmotesWiki/Emote_60000389.png",
+        "id": "60000389"
+      },
+      {
+        "path": "EmotesWiki/Emote_60000390.png",
+        "id": "60000390"
+      },
+      {
+        "path": "EmotesWiki/Emote_60000391.png",
+        "id": "60000391"
+      },
+      {
+        "path": "EmotesWiki/Emote_60000392.png",
+        "id": "60000392"
+      },
+      {
+        "path": "EmotesWiki/Emote_60000393.png",
+        "id": "60000393"
+      },
+      {
+        "path": "EmotesWiki/Emote_60000394.png",
+        "id": "60000394"
+      },
+      {
+        "path": "EmotesWiki/Emote_60000395.png",
+        "id": "60000395"
+      },
+      {
+        "path": "EmotesWiki/Emote_60000396.png",
+        "id": "60000396"
+      },
+      {
+        "path": "EmotesWiki/Emote_60000399.png",
+        "id": "60000399"
+      },
+      {
+        "path": "EmotesWiki/Emote_60000400.png",
+        "id": "60000400"
+      },
+      {
+        "path": "EmotesWiki/Emote_60000401.png",
+        "id": "60000401"
+      },
+      {
+        "path": "EmotesWiki/Emote_60000402.png",
+        "id": "60000402"
+      },
+      {
+        "path": "EmotesWiki/Emote_60000442.png",
+        "id": "60000442"
+      },
+      {
+        "path": "EmotesWiki/Emote_60000443.png",
+        "id": "60000443"
+      },
+      {
+        "path": "EmotesWiki/Emote_60000444.png",
+        "id": "60000444"
+      },
+      {
+        "path": "EmotesWiki/Emote_60000445.png",
+        "id": "60000445"
       }
     ],
     "Flavia": [
@@ -316,6 +438,30 @@ const emoteData = {
       {
         "path": "EmotesWiki/Fuchsia_60000094.png",
         "id": "60000094"
+      },
+      {
+        "path": "EmotesWiki/Fuchsia_60000434.png",
+        "id": "60000434"
+      },
+      {
+        "path": "EmotesWiki/Fuchsia_60000435.png",
+        "id": "60000435"
+      },
+      {
+        "path": "EmotesWiki/Fuchsia_60000436.png",
+        "id": "60000436"
+      },
+      {
+        "path": "EmotesWiki/Fuchsia_60000437.png",
+        "id": "60000437"
+      },
+      {
+        "path": "EmotesWiki/Fuchsia_60000440.png",
+        "id": "60000440"
+      },
+      {
+        "path": "EmotesWiki/Fuchsia_60000441.png",
+        "id": "60000441"
       },
       {
         "path": "EmotesWiki/Fuchsia_60001032.png",
@@ -816,6 +962,16 @@ const emoteData = {
         "id": "60000134"
       }
     ],
+    "Nora": [
+      {
+        "path": "EmotesWiki/Nora_60000397.png",
+        "id": "60000397"
+      },
+      {
+        "path": "EmotesWiki/Nora_60000398.png",
+        "id": "60000398"
+      }
+    ],
     "Reiichi": [
       {
         "path": "EmotesWiki/Reiichi_60000074.png",
@@ -1118,6 +1274,138 @@ const emoteData = {
       {
         "path": "ChatEmote/Yvette_88000023.png",
         "id": "88000023"
+      }
+    ]
+  },
+  "MobileEmote": {
+    "Audrey": [
+      {
+        "path": "MobileEmote/Audrey_60001039.png",
+        "id": "60001039"
+      }
+    ],
+    "Bai Mo": [
+      {
+        "path": "MobileEmote/Bai Mo_60001041.png",
+        "id": "60001041"
+      },
+      {
+        "path": "MobileEmote/Bai Mo_60001054.png",
+        "id": "60001054"
+      }
+    ],
+    "Celestia": [
+      {
+        "path": "MobileEmote/Celestia_60001038.png",
+        "id": "60001038"
+      }
+    ],
+    "Eika": [
+      {
+        "path": "MobileEmote/Eika_60001046.png",
+        "id": "60001046"
+      },
+      {
+        "path": "MobileEmote/Eika_60001048.png",
+        "id": "60001048"
+      }
+    ],
+    "Flavia": [
+      {
+        "path": "MobileEmote/Flavia_60000362.png",
+        "id": "60000362"
+      },
+      {
+        "path": "MobileEmote/Flavia_60001044.png",
+        "id": "60001044"
+      }
+    ],
+    "Fragrans": [
+      {
+        "path": "MobileEmote/Fragrans_60001043.png",
+        "id": "60001043"
+      }
+    ],
+    "Fuchsia": [
+      {
+        "path": "MobileEmote/Fuchsia_60001051.png",
+        "id": "60001051"
+      }
+    ],
+    "Galatea": [
+      {
+        "path": "MobileEmote/Galatea_60001040.png",
+        "id": "60001040"
+      }
+    ],
+    "Kanami": [
+      {
+        "path": "MobileEmote/Kanami_60000357.png",
+        "id": "60000357"
+      }
+    ],
+    "Kokona": [
+      {
+        "path": "MobileEmote/Kokona_60000361.png",
+        "id": "60000361"
+      },
+      {
+        "path": "MobileEmote/Kokona_60001045.png",
+        "id": "60001045"
+      },
+      {
+        "path": "MobileEmote/Kokona_60001050.png",
+        "id": "60001050"
+      }
+    ],
+    "Lawine": [
+      {
+        "path": "MobileEmote/Lawine_60000364.png",
+        "id": "60000364"
+      },
+      {
+        "path": "MobileEmote/Lawine_60001042.png",
+        "id": "60001042"
+      },
+      {
+        "path": "MobileEmote/Lawine_60001053.png",
+        "id": "60001053"
+      }
+    ],
+    "Maddelena": [
+      {
+        "path": "MobileEmote/Maddelena_60001047.png",
+        "id": "60001047"
+      }
+    ],
+    "Meredith": [
+      {
+        "path": "MobileEmote/Meredith_60000359.png",
+        "id": "60000359"
+      }
+    ],
+    "Michele": [
+      {
+        "path": "MobileEmote/Michele_60000377.png",
+        "id": "60000377"
+      }
+    ],
+    "Ming": [
+      {
+        "path": "MobileEmote/Ming_60000360.png",
+        "id": "60000360"
+      }
+    ],
+    "Yugiri": [
+      {
+        "path": "MobileEmote/Yugiri_60001049.png",
+        "id": "60001049"
+      }
+    ],
+    "Yvette": [
+      {
+        "path": "MobileEmote/Yvette_60001052.png",
+        "id": "60001052"
       }
     ]
   },
